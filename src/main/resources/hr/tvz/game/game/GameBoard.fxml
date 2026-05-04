@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import hr.tvz.game.game.GameBoardCanvas?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.tvz.game.game.GameController">
+   <top>
+       <VBox style="-fx-background-color: #0a1525;">
+            <HBox spacing="20.0" style="-fx-padding: 10; -fx-background-color: #0a1525;">
+              <Label style="-fx-text-fill:#00bfff; -fx-font-size: 20; -fx-font-weight: bold;" text="SKY TEAM" />
+              <Label fx:id="rundaLabel" style="-fx-text-fill: white; -fx-font-size: 14;" text="Runda: 1" />
+              <Label fx:id="statusLabel" style="-fx-text-fill: #88ff88; -fx-font-size: 13;" text="Spreman" />
+
+              <Label style="-fx-text-fill: white; -fx-font-size: 12;" text="Aerodrom:" />
+              <ComboBox fx:id="aerodromComboBox" prefWidth="150"/>
+              <Button text="Postavi" onAction="#onPostaviAerodromKlik" style="-fx-background-color: #2a4a2a; -fx-text-fill: #88ff88;"/>
+          </HBox>
+           <HBox style="-fx-padding: 5 10 10 10;">
+               <Label fx:id="pragoviLabel"
+                      style="-fx-text-fill: #aabbcc; -fx-font-size: 12;"
+                      text="" />
+           </HBox>
+
+       </VBox>
+   </top>
+    <center>
+        <HBox spacing="10" style="-fx-padding: 10;">
+            <GameBoardCanvas fx:id="avijonCanvas" height="400" width="200" />   <!-- Canvas koji služi za za animaciju aviona -->
+            <GridPane fx:id="slotsGrid" alignment="CENTER" hgap="10" vgap="10" HBox.hgrow="ALWAYS">
+
+                <!-- RED 1 -->
+                <VBox onMouseClicked="#onGasKlik" style="-fx-background-color: #1a2a3a; -fx-padding: 10; -fx-min-width: 120;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label style="-fx-text-fill: #00bfff; -fx-font-weight: bold;" text="GAS" />
+                    <Label fx:id="gasLabel" style="-fx-text-fill: white; -fx-font-size: 20;" text="—" />
+                </VBox>
+
+                <VBox onMouseClicked="#onBrakeKlik" style="-fx-background-color: #1a2a3a; -fx-padding: 10; -fx-min-width: 120;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label style="-fx-text-fill: #00bfff; -fx-font-weight: bold;" text="BRAKE" />
+                    <Label fx:id="brakeLabel" style="-fx-text-fill: white; -fx-font-size: 20;" text="—" />
+                </VBox>
+
+                <!-- RED 2 -->
+                <VBox onMouseClicked="#onFlapsKlik" style="-fx-background-color: #1a2a3a; -fx-padding: 10; -fx-min-width: 120;" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label style="-fx-text-fill: #00bfff; -fx-font-weight: bold;" text="FLAPS" />
+                    <Label fx:id="flapsLabel" style="-fx-text-fill: white; -fx-font-size: 20;" text="—" />
+                </VBox>
+
+                <VBox onMouseClicked="#onGearKlik" style="-fx-background-color: #1a2a3a; -fx-padding: 10; -fx-min-width: 120;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label style="-fx-text-fill: #00bfff; -fx-font-weight: bold;" text="LANDING GEAR" />
+                    <Label fx:id="gearLabel" style="-fx-text-fill: white; -fx-font-size: 20;" text="—" />
+                </VBox>
+
+                <!-- RED 3 -->
+                <VBox onMouseClicked="#onRadioKlik" style="-fx-background-color: #1a2a3a; -fx-padding: 10; -fx-min-width: 120;" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <Label style="-fx-text-fill: #00bfff; -fx-font-weight: bold;" text="RADIO" />
+                    <Label fx:id="radioLabel" style="-fx-text-fill: white; -fx-font-size: 20;" text="—" />
+                </VBox>
+
+                <VBox onMouseClicked="#onMotorKlik" style="-fx-background-color: #1a2a3a; -fx-padding: 10; -fx-min-width: 120;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <Label style="-fx-text-fill: #00bfff; -fx-font-weight: bold;" text="MOTOR" />
+                    <Label fx:id="motorLabel" style="-fx-text-fill: white; -fx-font-size: 20;" text="—" />
+                </VBox>
+
+                <!-- RED 4 -->
+                <VBox onMouseClicked="#onAxisKlik" style="-fx-background-color: #1a2a3a; -fx-padding: 10; -fx-min-width: 120;" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                    <Label style="-fx-text-fill: #00bfff; -fx-font-weight: bold;" text="AXIS" />
+                    <Label fx:id="axisLabel" style="-fx-text-fill: white; -fx-font-size: 20;" text="—" />
+                </VBox>
+
+                <VBox onMouseClicked="#onApproachKlik" style="-fx-background-color: #1a2a3a; -fx-padding: 10; -fx-min-width: 120;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <Label style="-fx-text-fill: #00bfff; -fx-font-weight: bold;" text="APPROACH" />
+                    <Label fx:id="approachLabel" style="-fx-text-fill: white; -fx-font-size: 20;" text="—" />
+                </VBox>
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+
+            </GridPane> <!-- Ovdje idu slotovi -->
+
+        </HBox>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #0a1525;">
+            <Button fx:id="baciKockeBtn" onAction="#baciKockuAction" style="-fx-background-color: #2a3a5a; -fx-text-fill: white;" text="Baci kocke" />
+            <Button fx:id="zavrsiRunduBtn" onAction="#onZavrsiRunduKlik" style="-fx-background-color: #4a2a1a; -fx-text-fill: #ffaa44;" text="Završi rundu"/>
+            <Button fx:id="sljedecaRundaBtn" style="-fx-background-color: #2a4a2a; -fx-text-fill: #88ff88;" text="Sljedeća runda" onAction="#onSljedecaRundaKlik"/>
+        </HBox>
+    </bottom>
+</BorderPane>

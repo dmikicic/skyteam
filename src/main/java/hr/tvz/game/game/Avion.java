@@ -1,6 +1,11 @@
 package hr.tvz.game.game;
 
-public class Avion {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Avion implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private int visina;
     private int brzina;

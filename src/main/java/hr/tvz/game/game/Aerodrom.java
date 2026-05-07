@@ -1,8 +1,13 @@
 package hr.tvz.game.game;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 
-public class Aerodrom {
+public class Aerodrom implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private String naziv;
     private String kod; // skraćenica od naziva aeordroma
     private List <AerodromRunda> runde;

@@ -1,6 +1,11 @@
 package hr.tvz.game.game;
 
-public class AerodromRunda {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class AerodromRunda implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private int brojRunde;
     private int minMotor;

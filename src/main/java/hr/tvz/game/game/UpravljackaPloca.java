@@ -3,10 +3,14 @@ import hr.tvz.game.game.model.Igrac;
 import hr.tvz.game.game.model.SlotTip;
 import java.util.EnumMap;
 import java.util.Map;
+import java.io.Serial;
+import java.io.Serializable;
 
 //Upravljacka ploca pamti koje kocke su postavljene na koja mjesta na ploci
 
-public class UpravljackaPloca {
+public class UpravljackaPloca implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private Map<SlotTip, Integer> slotovi;
     private Map<SlotTip, Igrac> igraci;

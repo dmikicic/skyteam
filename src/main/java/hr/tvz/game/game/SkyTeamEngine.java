@@ -9,8 +9,13 @@ import hr.tvz.game.game.utils.ValidacijaRundiUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.io.Serial;
+import java.io.Serializable;
 
-public class SkyTeamEngine {
+public class SkyTeamEngine implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private Avion avion;
     private Aerodrom aerodrom;
     private UpravljackaPloca ploca;
@@ -19,7 +24,7 @@ public class SkyTeamEngine {
     private Igrac trenutniIgrac = Igrac.PILOT;
     private List <Integer> kockaPilota = new ArrayList<>();
     private List <Integer> kockaKopilota = new ArrayList<>();
-    private Random random = new Random();
+    private transient Random random = new Random(); //kada se serializira, random se ne serializira
 
     public SkyTeamEngine() {
         this.avion = new Avion();
@@ -158,6 +163,10 @@ public class SkyTeamEngine {
         this.trenutnaFaza = FazaIgre.BACANJE;
         this.kockaPilota = new ArrayList<>();
         this.kockaKopilota = new ArrayList<>();
+    }
+
+    private void trasientPolja(){
+        this.random = new Random(); //: nakon što učitaš igru iz datoteke, random polje je null (jer je transient → nije serijaliziran). Zovemo ovu metodu da napravimo svjež Random() objekt. Ovo se koristi za load
     }
 
     public boolean provjeriKrajIgre() {

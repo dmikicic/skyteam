@@ -23,5 +23,12 @@ public class DialogUtils {
         alert.setContentText(poruka);
         alert.showAndWait();
         }
+    public static void prikaziDialog(String naslov, String sadrzaj, String zaglavlje, Alert.AlertType tipAlerta) {
+        Alert alert = new Alert(tipAlerta);
+        alert.setTitle(naslov);
+        alert.setHeaderText(zaglavlje);
+        alert.setContentText(sadrzaj);
+        alert.showAndWait();
+    }
 
 }

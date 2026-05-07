@@ -165,7 +165,7 @@ public class SkyTeamEngine implements Serializable {
         this.kockaKopilota = new ArrayList<>();
     }
 
-    private void trasientPolja(){
+    public void transientPolja(){
         this.random = new Random(); //: nakon što učitaš igru iz datoteke, random polje je null (jer je transient → nije serijaliziran). Zovemo ovu metodu da napravimo svjež Random() objekt. Ovo se koristi za load
     }
 

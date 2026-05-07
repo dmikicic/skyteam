@@ -1,14 +1,15 @@
 package hr.tvz.game.game;
 
+import hr.tvz.game.game.exception.GamePersistingException;
 import hr.tvz.game.game.model.SlotTip;
-import hr.tvz.game.game.utils.AerodromFactoryUtils;
-import hr.tvz.game.game.utils.DialogUtils;
-import hr.tvz.game.game.utils.PragoviUtils;
-import hr.tvz.game.game.utils.SlotDialogUtils;
+import hr.tvz.game.game.utils.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+
+import java.io.*;
 
 public class GameController {
     @FXML private Label rundaLabel;
@@ -137,6 +138,25 @@ public class GameController {
         SlotDialogUtils.postaviNaSlot(engine, slot, engine.getTrenutniIgrac());
         azurirajUI();
     }
-
+@FXML public void saveGame(){
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(StringConstants.SAVE_DATOTEKA))){
+            oos.writeObject(engine);
+            DialogUtils.prikaziDialog(StringConstants.SAVE_NASLOV,StringConstants.SAVE_PORUKA,StringConstants.SAVE_ZAGLAVLJE, Alert.AlertType.INFORMATION);
+        } catch (Exception e) {
+            DialogUtils.prikaziDialog(StringConstants.SAVE_ERROR_NASLOV,StringConstants.SAVE_ERROR_PORUKA,StringConstants.SAVE_ERROR_ZAGLAVLJE, Alert.AlertType.ERROR);
+            throw new GamePersistingException(StringConstants.EX_SAVE, e);
+        }
+}
+@FXML public void loadGame(){
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(StringConstants.SAVE_DATOTEKA))){
+            engine=(SkyTeamEngine) ois.readObject();
+            engine.transientPolja();
+            azurirajUI();
+            DialogUtils.prikaziDialog(StringConstants.LOAD_NASLOV,StringConstants.LOAD_PORUKA,StringConstants.LOAD_ZAGLAVLJE, Alert.AlertType.INFORMATION);
+        } catch (IOException | ClassNotFoundException e) {
+            DialogUtils.prikaziDialog(StringConstants.LOAD_ERROR_NASLOV,StringConstants.LOAD_ERROR_PORUKA,StringConstants.LOAD_ERROR_ZAGLAVLJE, Alert.AlertType.ERROR);
+            throw new GamePersistingException(StringConstants.EX_LOAD, e);
+        }
+}
 
 }

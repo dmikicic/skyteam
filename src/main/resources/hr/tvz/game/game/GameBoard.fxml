@@ -8,6 +8,16 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.tvz.game.game.GameController">
    <top>
        <VBox style="-fx-background-color: #0a1525;">
+           <MenuBar>
+               <menus>
+                   <Menu mnemonicParsing="false" text="Igra">
+                       <items>
+                           <MenuItem mnemonicParsing="false" onAction="#saveGame" text="Spremi" />
+                           <MenuItem mnemonicParsing="false" onAction="#loadGame" text="Učitaj" />
+                       </items>
+                   </Menu>
+               </menus>
+           </MenuBar>
             <HBox spacing="20.0" style="-fx-padding: 10; -fx-background-color: #0a1525;">
               <Label style="-fx-text-fill:#00bfff; -fx-font-size: 20; -fx-font-weight: bold;" text="SKY TEAM" />
               <Label fx:id="rundaLabel" style="-fx-text-fill: white; -fx-font-size: 14;" text="Runda: 1" />
